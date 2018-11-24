@@ -30,7 +30,7 @@ export const ImageLoader = props => (
 );
 
 export const Loader = () => (
-    <div class="lds-dual-ring"></div>
+    <div className="lds-dual-ring"></div>
 )
 
 export default MyLoader;
