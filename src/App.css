@@ -1,32 +1,68 @@
-.App {
-  text-align: center;
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.column {
+    width: 150vh;
+    margin-top: 5vh;
+    background-color: aqua;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.item-right {
+    margin-top: 2vh;
+    width: 80vh;
+    background-color: aliceblue;
 }
 
-.App-link {
-  color: #61dafb;
+.item-left {
+    margin-top: 2vh;
+    width: 50vh;
+}
+.user-list {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.user-photo {
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50px;
+}
+
+.user-list-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20vh;
+    margin-left: 2vh;
+}
+
+.user-list-item-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.user-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.user-input-item {
+    margin:1vh 0 1vh;
+}
+
+.user-input-item-group {
+    display: flex;
+    flex-direction: column;
 }
