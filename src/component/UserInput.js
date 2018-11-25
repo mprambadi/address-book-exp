@@ -13,54 +13,68 @@ const UserInput = props => {
   return (
     <div className={classes.userInput}>
       <div className={classes.avatarContainer}>
-       {values.file 
-       ? <Avatar src={URL.createObjectURL(values.file)} className={classes.avatarItem}/> 
-       : <AccountCircleRounded className={classes.avatarItem}/>
-    }
-        
+        {values.file ? (
+          <Avatar
+            src={URL.createObjectURL(values.file)}
+            className={classes.avatarItem}
+          />
+        ) : (
+          <AccountCircleRounded className={classes.avatarItem} />
+        )}
       </div>
       <Form className={classes.userInputItem}>
-        <TextField
-          id="outlined-email-input"
-          className={classes.textField}
+        <input
+          id="outlined-button-file"
+          accept="image/*"
+          className={classes.input}
           type="file"
           name="file"
-          margin="normal"
-          variant="outlined"
           onChange={({ target: { files } }) =>
             props.setFieldValue("file", files[0])
           }
         />
+        <label htmlFor="outlined-button-file">
+          <Button
+            variant="outlined"
+            component="span"
+            className={classes.upload}
+          >
+            Choose Profile Picture
+          </Button>
+        </label>
         <TextField
-          id="outlined-email-input"
+          id="outlined-nama-input"
           label="Nama"
           className={classes.textField}
           type="text"
           name="nama"
           margin="normal"
           variant="outlined"
+          value={values.nama}
           onChange={handleChange}
         />
         <ErrorMessage name="nama" component="div" />
         <TextField
-          id="outlined-email-input"
+          id="outlined-phone-input"
           label="Phone"
           className={classes.textField}
           type="number"
           name="phone"
           margin="normal"
           variant="outlined"
+          value={values.phone}
           onChange={handleChange}
         />
         <ErrorMessage name="phone" component="div" />
         <TextField
-          id="outlined-email-input"
+          id="outlined-address-input"
           label="Address"
           className={classes.textField}
           type="text"
           name="address"
           margin="normal"
           variant="outlined"
+          value={values.address}
           onChange={handleChange}
         />
         <ErrorMessage name="address" component="div" />
@@ -92,7 +106,7 @@ const formikEnhancer = withFormik({
     address: "",
     file: ""
   }),
-  handleSubmit: async (values, { props }) => {
+  handleSubmit: async (values, { props, setFieldValue }) => {
     const item = new FormData();
 
     item.append("photo", values.file);
@@ -102,6 +116,10 @@ const formikEnhancer = withFormik({
 
     const { data } = await api.post("/users", item);
 
+    setFieldValue("file", "");
+    setFieldValue("phone", "");
+    setFieldValue("nama", "");
+    setFieldValue("address", "");
     props.addUser(data);
   }
 })(UserInput);
@@ -128,8 +146,16 @@ const style = theme => ({
     marginTop: theme.spacing.unit
   },
   avatarItem: {
-      width:100,
-      height:100
+    width: 100,
+    height: 100
+  },
+  input: {
+    display: "none"
+  },
+  upload: {
+    display: "flex",
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
   }
 });
 const styleEnhancer = withStyles(style)(formikEnhancer);

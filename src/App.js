@@ -1,7 +1,6 @@
 import React from "react";
 import blue from "@material-ui/core/colors/blue";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
-import { Loader, ImageLoader } from "./component/Loader";
 
 const Dashboard = React.lazy(() => import("./view/dashboard"));
 const theme = createMuiTheme({
