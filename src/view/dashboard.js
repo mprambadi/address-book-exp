@@ -73,7 +73,7 @@ class Dashboard extends Component {
     this.setState(state => {
       return {
         loadingMore: false,
-        page: data.pages - 1,
+        page: data.pages === 1 ? 1 : data.pages - 1,
         morePage: !state.morePage
       };
     });
