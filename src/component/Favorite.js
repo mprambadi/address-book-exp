@@ -16,14 +16,13 @@ import StarBorder from "@material-ui/icons/StarBorder";
 
 const Avatar = lazy(() => import("./Avatar"));
 const UserList = ({ users, classes, loading, loadingMore, addStar }) => {
-  const favorites = users.filter(user => user.favorite === true);
   return (
     <List dense>
       {loading
         ? Array.from(Array(1).keys()).map((loader, id) => (
             <MyLoader className={classes.loader} key={loader} />
           ))
-        : favorites.map((user, idx) => (
+        : users.map((user, idx) => (
             <ListItem key={user.id + idx} button className={classes.content}>
               <span> {idx + 1} </span>
               <Suspense

@@ -56,7 +56,7 @@ class Dashboard extends Component {
 
   fetchFavorite = async () => {
     const { data } = await api.get("/users");
-    this.setState({ favorite: data });
+    this.setState({ favorite: data.filter(user=>user.favorite===true) });
   };
 
   fetchMoreData = async () => {
