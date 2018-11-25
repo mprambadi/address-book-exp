@@ -51,7 +51,7 @@ class Dashboard extends Component {
     this.setState({ loading: true });
     const { data } = await api.get(`/users/1`);
 
-    this.setState({ data, loading: false, page: 1 });
+    this.setState({ data, loading: false, page: 1, morePage:true });
   };
 
   fetchFavorite = async () => {
