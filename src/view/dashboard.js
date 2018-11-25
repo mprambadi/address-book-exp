@@ -16,7 +16,7 @@ class Dashboard extends Component {
     tab: 0,
     loadingMore: false,
     page: 1,
-    morePage: false,
+    morePage: true,
     detail: {
       status: false,
       user: {},
@@ -32,13 +32,18 @@ class Dashboard extends Component {
 
   detectScroll = () => {
     document.onscroll = ev => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+        document.body.offsetHeight
+      ) {
         this.setState(state => {
           return {
             page: state.page + 1
           };
         });
-        this.fetchMoreData();
+
+        if (this.state.morePage === false) return;
+        if (this.state.page !== 1) this.fetchMoreData();
       }
     };
   };
@@ -58,7 +63,6 @@ class Dashboard extends Component {
     this.setState({ loadingMore: true });
     const { data } = await api.get(`/users/${this.state.page}`);
 
-    console.log(data);
     if (data.count !== this.state.data.data.length) {
       this.setState(state => {
         return {
@@ -74,7 +78,7 @@ class Dashboard extends Component {
       return {
         loadingMore: false,
         page: data.pages === 1 ? 1 : data.pages - 1,
-        morePage: !state.morePage
+        morePage: false
       };
     });
   };
@@ -107,23 +111,23 @@ class Dashboard extends Component {
       phone
     });
 
-    this.fetchFavorite()
+    this.fetchFavorite();
     this.fetchData();
   };
 
   addStar = async user => {
     await api.patch(`/users/${user.id}`, user);
-    this.fetchFavorite()
+    this.fetchFavorite();
     this.fetchData();
   };
 
-  deleteUser = async (id) => {
-  const {data} =   await api.delete(`/users/${id}`)
-    
-  console.log(data)
-  this.fetchFavorite();
+  deleteUser = async id => {
+    const { data } = await api.delete(`/users/${id}`);
+
+    console.log(data);
+    this.fetchFavorite();
     this.fetchData();
-  }
+  };
 
   renderContent = tab => {
     switch (tab) {
