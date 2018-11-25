@@ -1,7 +1,7 @@
 import React from "react";
 import { withFormik, ErrorMessage, Form } from "formik";
 import { withStyles } from "@material-ui/core/styles";
-import { TextField, Button, Avatar } from "@material-ui/core";
+import { TextField, Button, Avatar, Fade } from "@material-ui/core";
 import AccountCircleRounded from "@material-ui/icons/AccountCircleRounded";
 
 import * as yup from "yup";
@@ -14,14 +14,19 @@ const UserInput = props => {
     <div className={classes.userInput}>
       <div className={classes.avatarContainer}>
         {values.file ? (
-          <Avatar
-            src={URL.createObjectURL(values.file)}
-            className={classes.avatarItem}
-          />
+          <Fade in>
+            <Avatar
+              src={URL.createObjectURL(values.file)}
+              className={classes.avatarItem}
+            />
+          </Fade>
         ) : (
-          <AccountCircleRounded className={classes.avatarItem} />
+          <Fade in>
+            <AccountCircleRounded className={classes.avatarItem} />
+          </Fade>
         )}
       </div>
+      <Fade in>
       <Form className={classes.userInputItem}>
         <input
           id="outlined-button-file"
@@ -88,6 +93,7 @@ const UserInput = props => {
           Submit
         </Button>
       </Form>
+      </Fade>
     </div>
   );
 };
@@ -155,7 +161,7 @@ const style = theme => ({
   upload: {
     display: "flex",
     marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing.unit
   }
 });
 const styleEnhancer = withStyles(style)(formikEnhancer);
