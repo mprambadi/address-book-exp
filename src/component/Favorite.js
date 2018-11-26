@@ -76,7 +76,7 @@ const style = theme => ({
     textTransform: "capitalize",
     fontSize: 18
   },
-
+  
   avatar: {
     width: 80,
     height: 80,
