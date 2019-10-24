@@ -61,7 +61,7 @@ class Dashboard extends Component {
 
   fetchMoreData = async () => {
     this.setState({ loadingMore: true });
-    const { data } = await api.get(`/users/${this.state.page}`);
+    const { data } = await api.get(`/users?page=${this.state.page}`);
 
     if (data.count !== this.state.data.data.length) {
       this.setState(state => {
