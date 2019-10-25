@@ -1,6 +1,7 @@
 {
   "name": "vox-address-book",
   "version": "0.1.0",
+  "homepage": "https://mprambadi.github.io/address-book-exp/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.5.1",

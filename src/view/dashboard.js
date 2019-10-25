@@ -49,7 +49,7 @@ class Dashboard extends Component {
   };
   fetchData = async () => {
     this.setState({ loading: true });
-    const { data } = await api.get(`/users/1`);
+    const { data } = await api.get(`/users?page=1`);
 
     this.setState({ data, loading: false, page: 1, morePage:true });
   };
