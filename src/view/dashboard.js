@@ -51,12 +51,12 @@ class Dashboard extends Component {
     this.setState({ loading: true });
     const { data } = await api.get(`/users?page=1`);
 
-    this.setState({ data, loading: false, page: 1, morePage:true });
+    this.setState({ data, loading: false, page: 1, morePage: true });
   };
 
   fetchFavorite = async () => {
-    const { data } = await api.get("/users");
-    this.setState({ favorite: data.filter(user=>user.favorite===true) });
+    const { data: { data } } = await api.get("/users");
+    this.setState({ favorite: data.filter(user => user.favorite === true) });
   };
 
   fetchMoreData = async () => {
@@ -150,16 +150,16 @@ class Dashboard extends Component {
             handleUpdateUser={this.handleUpdateUser}
           />
         ) : (
-          <UserLists
-            users={this.state.data}
-            loading={this.state.loading}
-            loadingMore={this.state.loadingMore}
-            addStar={this.addStar}
-            handleDetail={this.handleDetail}
-            detail={this.state.detail}
-            handleDelete={this.deleteUser}
-          />
-        );
+            <UserLists
+              users={this.state.data}
+              loading={this.state.loading}
+              loadingMore={this.state.loadingMore}
+              addStar={this.addStar}
+              handleDetail={this.handleDetail}
+              detail={this.state.detail}
+              handleDelete={this.deleteUser}
+            />
+          );
       }
     }
   };
